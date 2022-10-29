@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cargo4You_Project", "Cargo4You_Project\Cargo4You_Project.csproj", "{3CCD2756-EB02-4FB6-B507-766D2DB1927E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CCD2756-EB02-4FB6-B507-766D2DB1927E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCD2756-EB02-4FB6-B507-766D2DB1927E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCD2756-EB02-4FB6-B507-766D2DB1927E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCD2756-EB02-4FB6-B507-766D2DB1927E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {691081F3-6C7A-445E-B028-C173E3A40F45}
+	EndGlobalSection
+EndGlobal
