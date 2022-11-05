@@ -1,0 +1,62 @@
+﻿@model Cargo4You_Project.Models.Parcel;
+
+
+
+
+
+<form action="SetParcelDetails" method="post">
+    
+    <div class="form-group">
+
+
+
+        <h5>Please choose a courier</h5>
+        <select class="form-check-inline" name="ParcelName" aria-label="Default select example">
+            <option selected>Please select a courier</option>
+            <!--I need to prevent user to send default label-->
+            <option value="1">Cargo4You</option>
+            <option value="2">ShipFaster</option>
+            <option value="3">MaltaShip</option>
+        </select>
+        <h5>Please input parcel dimensions</h5>
+        <div class="form-group">
+            <!--I cant seem to make them appear inline-->
+            <label for="" class="col-xs-2 control-label">
+                <div class="col-xs-10">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="text" name="ParcelWidth" class="form-check-inline" placeholder="Width" />
+                            <!--Perhaps placeholder shouldnt be with letters, bad example?-->
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="ParcelHeight" class="form-check-inline" placeholder="Height" />
+                            <!--Perhaps placeholder shouldnt be with letters, bad example?-->
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="ParcelDepth" class="form-check-inline" placeholder="Depth" />
+                            <!--Perhaps placeholder shouldnt be with letters, bad example?-->
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+    <br />
+    <div>
+        <h5>Please input parcel weight</h5>
+        <div class="form-row">
+            <label for="Weight"></label>
+            <input type="text" name="ParcelWeight" class="form-check-inline" id="inputEmail4" placeholder="Weight">
+            <!--Perhaps placeholder shouldnt be with letters, bad example?-->
+        </div>
+    </div>
+    <br />
+    <div>
+        Viewbag/ViewData calculation will appear here? (or a separate view "confirm purchase")
+
+        Pricing model here as well?
+
+    </div>
+    <br />
+    <button type="submit" value="Save Parcel" class="btn btn-primary">Ship</button>
+</form>

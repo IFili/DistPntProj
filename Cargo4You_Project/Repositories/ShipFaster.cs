@@ -4,9 +4,9 @@ namespace Cargo4You_Project.Repositories
 {
     public class ShipFaster : IShipFaster
     {
-        public float calculatePriceByVolume(ParcelSpecs parcelSpecs, float parcelPriceByVolume)
+        public float calculatePriceByVolume(Parcel parcel, float parcelPriceByVolume)
         {
-            float parcelVolume = parcelSpecs.ParcelHeight * parcelSpecs.ParcelDepth * parcelSpecs.ParcelWidth;
+            float parcelVolume = parcel.ParcelHeight * parcel.ParcelDepth * parcel.ParcelWidth;
 
             if (parcelVolume <= 1000)
             {
@@ -24,17 +24,17 @@ namespace Cargo4You_Project.Repositories
 
 
 
-        public float calculatePriceByWeight(ParcelSpecs parcelSpecs, float parcelPricebyWeight)
+        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
         {
-            if (parcelSpecs.ParcelWeight > 10 && parcelSpecs.ParcelWeight <= 15)
+            if (parcel.ParcelWeight > 10 && parcel.ParcelWeight <= 15)
             {
                 parcelPricebyWeight = 16.50F;
             }
-            else if (parcelSpecs.ParcelWeight > 15 && parcelSpecs.ParcelWeight <= 25)
+            else if (parcel.ParcelWeight > 15 && parcel.ParcelWeight <= 25)
             {
                 parcelPricebyWeight = 36.50F;
             }
-            else if (parcelSpecs.ParcelWeight > 25 && parcelSpecs.ParcelWeight<=30) // validation for the maximum of 30kg needed
+            else if (parcel.ParcelWeight > 25 && parcel.ParcelWeight<=30) // validation for the maximum of 30kg needed
             {
 
                 float rate = 0.417F;
@@ -43,11 +43,11 @@ namespace Cargo4You_Project.Repositories
                 float totalPrice = 0F; // had to initiialize it with value, else it returned an error
 
 
-                while(parcelSpecs.ParcelWeight <=30)
+                while(parcel.ParcelWeight <=30)
                 {
                     totalPrice = basePrice + (rateMultiplier * rate);
                     rateMultiplier++;
-                    parcelSpecs.ParcelWeight++;
+                    parcel.ParcelWeight++;
                     // this will list all of the values (prices) between 25 & 30 kg, i hope to add some logic where inputted value gets compared to listed values
 
                     
@@ -55,6 +55,8 @@ namespace Cargo4You_Project.Repositories
 
                 parcelPricebyWeight = totalPrice;
             }
+            else { throw new ArgumentOutOfRangeException("{0}, Parcel weight exceeds maximum limits, please select another courier "); }
+            
             return parcelPricebyWeight;
 
 
@@ -67,10 +69,10 @@ namespace Cargo4You_Project.Repositories
 
         }
 
-       public float calculateTotalPrice(ParcelSpecs parcelSpecs, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
+       public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
             {
-                calculatePriceByVolume(parcelSpecs, parcelPriceByVolume);
-                calculatePriceByWeight(parcelSpecs, parcelPricebyWeight);
+                calculatePriceByVolume(parcel, parcelPriceByVolume);
+                calculatePriceByWeight(parcel, parcelPricebyWeight);
 
                 if (parcelPriceByVolume > parcelPricebyWeight)
                 {

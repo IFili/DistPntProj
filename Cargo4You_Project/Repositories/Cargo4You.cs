@@ -7,19 +7,23 @@ namespace Cargo4You_Project.Repositories
 {
     public   class Cargo4You: ICargo4You
     {
+       
+
         //maybe needs to be virtual
         // input logic of methods here
+        //const int defaultVolumeValue = 1000;
 
-        
         /* public  float calculateParcelVolume(float parcelVolume , ParcelSpecs parcelSpecs )
          {
 
          }*/
-
-        public float calculatePriceBylVolume(ParcelSpecs parcelSpecs, float parcelPriceByVolume) //zapamti da vratis pricevolume  // shoult float parcelVolume be a ref? 
+        //This is method for calculating price
+        //Params: Parcel - this is the class that getthe courier details
+        //Return type: float
+        public float calculatePriceBylVolume(Parcel parcel, float parcelPriceByVolume) //zapamti da vratis pricevolume  // shoult float parcelVolume be a ref? 
         {
            
-            float parcelVolume = parcelSpecs.ParcelHeight * parcelSpecs.ParcelWidth * parcelSpecs.ParcelDepth;
+            float parcelVolume = parcel.ParcelHeight * parcel.ParcelWidth * parcel.ParcelDepth;
 
             //return parcelVolume
             
@@ -43,23 +47,23 @@ namespace Cargo4You_Project.Repositories
 
         }*/
 
-        public float calculatePriceByWeight(ParcelSpecs parcelSpecs,float parcelPricebyWeight)
+        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
         {
             //float parcelPrice;
 
-            if (parcelSpecs.ParcelWeight <= 2)
+            if (parcel.ParcelWeight <= 2)
             {
                  parcelPricebyWeight = 15;
             }
 
 
-            else if (parcelSpecs.ParcelWeight > 2 && parcelSpecs.ParcelWeight<=15) 
+            else if (parcel.ParcelWeight > 2 && parcel.ParcelWeight<=15) 
             { 
                  parcelPricebyWeight = 18; 
             }
            
             
-              else if(parcelSpecs.ParcelWeight > 15 && parcelSpecs.ParcelWeight<=20)
+              else if(parcel.ParcelWeight > 15 && parcel.ParcelWeight<=20)
             {
                  parcelPricebyWeight = 35; 
             }
@@ -71,10 +75,10 @@ namespace Cargo4You_Project.Repositories
 
         }
 
-        public float calculateTotalPrice(ParcelSpecs parcelSpecs, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
+        public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
         {
-            calculatePriceBylVolume(parcelSpecs, parcelPriceByVolume); 
-            calculatePriceByWeight(parcelSpecs, parcelPricebyWeight);
+            calculatePriceBylVolume(parcel, parcelPriceByVolume); 
+            calculatePriceByWeight(parcel, parcelPricebyWeight);
 
 
             if (parcelPriceByVolume > parcelPricebyWeight)

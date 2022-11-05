@@ -6,55 +6,55 @@ namespace Cargo4You_Project.Repositories
 {
     public class MaltaShip : IMaltaShip
     {
-        public float calculatePriceByVolume(ParcelSpecs parcelSpecs, float parcelPriceByVolume)
+        public float calculatePriceByVolume(Parcel parcel, float parcelPriceByVolume)
         {
-            float parcelVolume = parcelSpecs.ParcelHeight & parcelSpecs.ParcelDepth * parcelSpecs.ParcelWidth;
+            float parcelVolume = parcel.ParcelHeight & parcel.ParcelDepth * parcel.ParcelWidth;
 
 
             //should some validation for minimum of 500 be here or in front end?
-            //if(parcelvolume < 500) {throw argument out of range exception
-
-            if (parcelVolume < 1000) // this would be an else if
+            if (parcelVolume < 500) { throw new ArgumentOutOfRangeException("{0}, Parcel volume below minimum limits, please select another courier "); }
+            else if (parcelVolume < 1000) // this would be an else if
 
             {
-                 parcelPriceByVolume = 9.50F;
+                parcelPriceByVolume = 9.50F;
             }
             else if (parcelVolume > 1000 && parcelVolume <= 2000)
             {
-                 parcelPriceByVolume = 19.50F;
+                parcelPriceByVolume = 19.50F;
 
 
             }
 
             else if (parcelVolume > 2000 && parcelVolume <= 5000)
             {
-                 parcelPriceByVolume = 48.50F;
+                parcelPriceByVolume = 48.50F;
 
             }
 
             else
             {
-                 parcelPriceByVolume = 147.50F;
+                parcelPriceByVolume = 147.50F;
             }
 
             return parcelPriceByVolume;
            
         }
 
-        public float calculatePriceByWeight(ParcelSpecs parcelSpecs, float parcelPricebyWeight)
+        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
         {
 
-            //if(parcelspecs.parcelweight<10) {throw outofrangeexception)
-            if(parcelSpecs.ParcelWeight>10 && parcelSpecs.ParcelWeight <=20)
+            if (parcel.ParcelWeight < 10) { throw new ArgumentOutOfRangeException("{0}, Parcel weight below minimum limits, please select another courier "); } //validation
+
+            else if (parcel.ParcelWeight > 10 && parcel.ParcelWeight <= 20)
             {
                 parcelPricebyWeight = 16.50F;
             }
 
-            else if(parcelSpecs.ParcelWeight > 20 && parcelSpecs.ParcelWeight <=30)
+            else if (parcel.ParcelWeight > 20 && parcel.ParcelWeight <= 30)
             {
                 parcelPricebyWeight = 33.99F;
             }
-            else if(parcelSpecs.ParcelWeight>30 )
+            else if (parcel.ParcelWeight > 30)
             {
 
                 float basePrice = 43.99F; // missing calculation of 0.41
@@ -63,11 +63,11 @@ namespace Cargo4You_Project.Repositories
                 float totalPrice = 0F;
 
                 // some sort of for loop where any kilogram over 31 adds 0.41 to the sum of 43.99
-                while (parcelSpecs.ParcelWeight <=55) // any parcel >30 over 25 kg , 30+25 = 55 
+                while (parcel.ParcelWeight <= 55) // any parcel >30 over 25 kg , 30+25 = 55 
                 {
                     totalPrice = basePrice + (rateMultiplier * rate);
                     rateMultiplier++;
-                    parcelSpecs.ParcelWeight++;
+                    parcel.ParcelWeight++;
                     // DP said parcel can weigh above 55kg , that in theory means this courier can ship to infinity?
                 }
             }
@@ -75,10 +75,10 @@ namespace Cargo4You_Project.Repositories
             return parcelPricebyWeight; 
         }
 
-        public float calculateTotalPrice(ParcelSpecs parcelSpecs, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
+        public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
         {
-            calculatePriceByVolume(parcelSpecs, parcelPriceByVolume);
-            calculatePriceByWeight(parcelSpecs, parcelPricebyWeight);
+            calculatePriceByVolume(parcel, parcelPriceByVolume);
+            calculatePriceByWeight(parcel, parcelPricebyWeight);
 
             if (parcelPriceByVolume > parcelPricebyWeight)
             {

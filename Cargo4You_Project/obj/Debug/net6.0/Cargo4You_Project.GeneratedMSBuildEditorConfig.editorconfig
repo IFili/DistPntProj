@@ -15,8 +15,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Korisnik\Desktop\Webdev\DistantPoint proekt\Cargo4You_Project\Cargo4You_Project
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Home/CreateParcelOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVQYXJjZWxPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Home/GetParcelDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHZXRQYXJjZWxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Home/SetParcelDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXRQYXJjZWxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Home/Zojgene.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxab2pnZW5lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Korisnik/Desktop/Webdev/DistantPoint proekt/Cargo4You_Project/Cargo4You_Project/Views/Shared/_ValidationScriptsPartial.cshtml]

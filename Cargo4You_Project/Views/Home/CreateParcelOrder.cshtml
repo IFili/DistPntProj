@@ -1,0 +1,53 @@
+﻿@model Cargo4You_Project.Models.Parcel;
+
+@{
+    ViewData["Title"] = "CreateParcelOrder";
+}
+
+
+
+<h2> Create </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Parcel</legend>
+
+        <div class="editor-field">
+            @Html.DropDownList("Courier", new List<SelectListItem>{
+        new SelectListItem{Text="Cargo4You", Value="Cargo4You"},
+        new SelectListItem{Text="ShipFaster", Value="ShipFaster"},
+        new SelectListItem{Text="MaltaShip", Value="MaltaShip"},
+
+        } , "Select Courier")
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(parcel => parcel.ParcelWidth)
+            @Html.ValidationMessageFor(parcel => parcel.ParcelWidth)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(parcel => parcel.ParcelHeight)
+            @Html.ValidationMessageFor(parcel => parcel.ParcelHeight)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(parcel => parcel.ParcelDepth)
+            @Html.ValidationMessageFor(parcel => parcel.ParcelDepth)
+        </div>
+        <br>
+        <div class="editor-field">
+            @Html.EditorFor(parcel => parcel.ParcelWeight)
+            @Html.ValidationMessageFor(parcel => parcel.ParcelWeight)
+        </div>
+
+        <p>
+            <input type="submit" value="Create"/>
+        </p>
+    </fieldset>
+}
+
+
