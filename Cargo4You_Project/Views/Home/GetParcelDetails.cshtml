@@ -14,9 +14,9 @@
         <select class="form-check-inline" name="ParcelName" aria-label="Default select example">
             <option selected>Please select a courier</option>
             <!--I need to prevent user to send default label-->
-            <option value="1">Cargo4You</option>
-            <option value="2">ShipFaster</option>
-            <option value="3">MaltaShip</option>
+            <option value="Cargo4You">Cargo4You</option>
+            <option value="ShipFaster">ShipFaster</option>
+            <option value="MaltaShip">MaltaShip</option>
         </select>
         <h5>Please input parcel dimensions</h5>
         <div class="form-group">
@@ -25,15 +25,19 @@
                 <div class="col-xs-10">
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" name="ParcelWidth" class="form-check-inline" placeholder="Width" />
+                            <input type="number" name="ParcelWidth" class="form-check-inline" placeholder="Width" />
+                            <span asp-validation-for="ParcelWidth"></span>
                             <!--Perhaps placeholder shouldnt be with letters, bad example?-->
                         </div>
                         <div class="form-group">
-                            <input type="text" name="ParcelHeight" class="form-check-inline" placeholder="Height" />
+                            <input type="number" name="ParcelHeight" class="form-check-inline" placeholder="Height" />
+                             <span asp-validation-for="ParcelHeight"></span>
+
                             <!--Perhaps placeholder shouldnt be with letters, bad example?-->
                         </div>
                         <div class="form-group">
-                            <input type="text" name="ParcelDepth" class="form-check-inline" placeholder="Depth" />
+                            <input type="number" name="ParcelDepth" class="form-check-inline" placeholder="Depth" />
+                            <span asp-validation-for="ParcelDepth"></span>
                             <!--Perhaps placeholder shouldnt be with letters, bad example?-->
                         </div>
                     </div>
@@ -46,7 +50,8 @@
         <h5>Please input parcel weight</h5>
         <div class="form-row">
             <label for="Weight"></label>
-            <input type="text" name="ParcelWeight" class="form-check-inline" id="inputEmail4" placeholder="Weight">
+            <input type="number" name="ParcelWeight" class="form-check-inline" id="inputEmail4" placeholder="Weight">
+            <span asp-validation-for="ParcelWeight"></span>
             <!--Perhaps placeholder shouldnt be with letters, bad example?-->
         </div>
     </div>

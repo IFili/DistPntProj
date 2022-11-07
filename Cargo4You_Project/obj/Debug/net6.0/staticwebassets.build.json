@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "y9GRmcODow2RIRDSoTsRhnWYoVtqczH1JTgFQUcKf+A=",
+  "Hash": "5WHUjs+HWSs04mCkmSwGrOgZbVUmzVwjtrwjRcZi4ok=",
   "Source": "Cargo4You_Project",
   "BasePath": "_content/Cargo4You_Project",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Korisnik\\Desktop\\Webdev\\DistantPoint proekt\\Cargo4You_Project\\Cargo4You_Project\\wwwroot\\css\\style.css",
+      "SourceId": "Cargo4You_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Korisnik\\Desktop\\Webdev\\DistantPoint proekt\\Cargo4You_Project\\Cargo4You_Project\\wwwroot\\",
+      "BasePath": "_content/Cargo4You_Project",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\Korisnik\\Desktop\\Webdev\\DistantPoint proekt\\Cargo4You_Project\\Cargo4You_Project\\wwwroot\\favicon.ico",

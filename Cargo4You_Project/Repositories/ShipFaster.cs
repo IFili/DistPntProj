@@ -2,88 +2,102 @@
 
 namespace Cargo4You_Project.Repositories
 {
-    public class ShipFaster : IShipFaster
+    public class ShipFaster
+    //at the moment float values trigger argument out of range, so front-end doesnt take floats
     {
-        public float calculatePriceByVolume(Parcel parcel, float parcelPriceByVolume)
+        private float totalPrice;
+        public float calculatePriceByVolume(float volume)
         {
-            float parcelVolume = parcel.ParcelHeight * parcel.ParcelDepth * parcel.ParcelWidth;
+          
 
-            if (parcelVolume <= 1000)
+            if (volume <= 1000F)
             {
-                parcelPriceByVolume = 11.99F;
+                return  11.99F;
             }
 
-            else if (parcelVolume > 1000 && parcelVolume <= 1700) // how do i validate this? do i do this for other couriers as well?
+            else //if (volume > 1000F && volume <= 1700F) // how do i validate this? do i do this for other couriers as well?
             {
-                parcelPriceByVolume = 20F;
+                
+                return 20F;
             }
-            else { throw new ArgumentOutOfRangeException("{0}, Parcel volume exceeds maximum limits, please select another courier "); }
+          //  else { throw new ArgumentOutOfRangeException("{0}, Parcel volume exceeds maximum limits, please select another courier "); }
 
-            return parcelPriceByVolume;
-        }
-
-
-
-        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
-        {
-            if (parcel.ParcelWeight > 10 && parcel.ParcelWeight <= 15)
-            {
-                parcelPricebyWeight = 16.50F;
-            }
-            else if (parcel.ParcelWeight > 15 && parcel.ParcelWeight <= 25)
-            {
-                parcelPricebyWeight = 36.50F;
-            }
-            else if (parcel.ParcelWeight > 25 && parcel.ParcelWeight<=30) // validation for the maximum of 30kg needed
-            {
-
-                float rate = 0.417F;
-                float basePrice = 40F;
-                int rateMultiplier = 1;
-                float totalPrice = 0F; // had to initiialize it with value, else it returned an error
-
-
-                while(parcel.ParcelWeight <=30)
-                {
-                    totalPrice = basePrice + (rateMultiplier * rate);
-                    rateMultiplier++;
-                    parcel.ParcelWeight++;
-                    // this will list all of the values (prices) between 25 & 30 kg, i hope to add some logic where inputted value gets compared to listed values
-
-                    
-                }
-
-                parcelPricebyWeight = totalPrice;
-            }
-            else { throw new ArgumentOutOfRangeException("{0}, Parcel weight exceeds maximum limits, please select another courier "); }
             
-            return parcelPricebyWeight;
+        }
 
 
 
+        public float calculatePriceByWeight(float weight)
+        {
+            if (weight > 10 && weight <= 15)
+            {
+                return  16.50F;
+            }
+            else if (weight > 15 && weight <= 25)
+            {
+                return 36.50F;
+            }
+            /* else if (weight > 25 && weight <= 30) // validation for the maximum of 30kg needed
+             {
+
+                 float rate = 0.417F;
+                 float basePrice = 40F;
+                 int rateMultiplier = 1;
+                 float totalPrice = 0F; // had to initiialize it with value, else it returned an error
 
 
+                 while(weight <= 30)
+                 {
+                     totalPrice = basePrice + (rateMultiplier * rate);
+                     rateMultiplier++;
+                     weight++;
+                     // this will list all of the values (prices) between 25 & 30 kg, i hope to add some logic where inputted value gets compared to listed values
 
+
+                 }*/
+
+            else if (weight > 25F && weight <= 30F)
+            {
+                float weightRate = (weight - 25F);
+                float rate = 0.417F;
+                float priceRate = 40F + (rate * weightRate);
+
+                return priceRate;
+            }
+
+            else { throw new ArgumentOutOfRangeException("{0}, Parcel weight exceeds maximum limits, please select another courier "); 
 
 
 
         }
 
-       public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
-            {
-                calculatePriceByVolume(parcel, parcelPriceByVolume);
-                calculatePriceByWeight(parcel, parcelPricebyWeight);
 
-                if (parcelPriceByVolume > parcelPricebyWeight)
+
+
+
+
+
+
+
+
+
+    }
+
+       public float calculateTotalPrice(Parcel parcel)
+            {
+            float ParcelVolumePrice = calculatePriceByVolume(parcel.ParcelHeight * parcel.ParcelWidth * parcel.ParcelDepth);
+            float ParcelWeightPrice = calculatePriceByWeight(parcel.ParcelWeight);
+
+            if (ParcelVolumePrice > ParcelWeightPrice)
                 {
-                    testTotalPrice = parcelPriceByVolume;
-                }
+             totalPrice = ParcelVolumePrice;
+        }
 
                 else
                 {
-                    testTotalPrice = parcelPricebyWeight;
+                totalPrice = ParcelWeightPrice;
                 }
-                return testTotalPrice;
+                return totalPrice;
             }
         }
     } 

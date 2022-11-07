@@ -4,92 +4,108 @@ using System.Threading.Tasks;
 
 namespace Cargo4You_Project.Repositories
 {
-    public class MaltaShip : IMaltaShip
+    public class MaltaShip
     {
-        public float calculatePriceByVolume(Parcel parcel, float parcelPriceByVolume)
-        {
-            float parcelVolume = parcel.ParcelHeight & parcel.ParcelDepth * parcel.ParcelWidth;
+        private float totalPrice;
 
+        public float calculatePriceByVolume(float volume)
+        {
+
+            //at the moment float values trigger argument out of range, so front-end doesnt take floats
 
             //should some validation for minimum of 500 be here or in front end?
-            if (parcelVolume < 500) { throw new ArgumentOutOfRangeException("{0}, Parcel volume below minimum limits, please select another courier "); }
-            else if (parcelVolume < 1000) // this would be an else if
+            if (volume < 500) { throw new ArgumentOutOfRangeException("{0}, Parcel volume below minimum limits, please select another courier "); }
+            else if (volume < 1000) // this would be an else if
 
             {
-                parcelPriceByVolume = 9.50F;
+                return 9.50F;
             }
-            else if (parcelVolume > 1000 && parcelVolume <= 2000)
+            else if (volume > 1000 && volume <= 2000)
             {
-                parcelPriceByVolume = 19.50F;
+                return 19.50F;
 
 
             }
 
-            else if (parcelVolume > 2000 && parcelVolume <= 5000)
+            else if (volume > 2000 && volume <= 5000)
             {
-                parcelPriceByVolume = 48.50F;
+                return 48.50F;
 
             }
 
             else
             {
-                parcelPriceByVolume = 147.50F;
+                return 147.50F;
             }
 
-            return parcelPriceByVolume;
            
+
         }
 
-        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
+        public float calculatePriceByWeight(float weight)
         {
 
-            if (parcel.ParcelWeight < 10) { throw new ArgumentOutOfRangeException("{0}, Parcel weight below minimum limits, please select another courier "); } //validation
+            if (weight < 10) { throw new ArgumentOutOfRangeException("{0}, Parcel weight below minimum limits, please select another courier "); } //validation
 
-            else if (parcel.ParcelWeight > 10 && parcel.ParcelWeight <= 20)
+            else if (weight > 10 && weight <= 20)
             {
-                parcelPricebyWeight = 16.50F;
+                return 16.50F;
             }
 
-            else if (parcel.ParcelWeight > 20 && parcel.ParcelWeight <= 30)
+            else if (weight > 20 && weight <= 30)
             {
-                parcelPricebyWeight = 33.99F;
+                return 33.99F;
             }
-            else if (parcel.ParcelWeight > 30)
-            {
+            /* else if (parcel.ParcelWeight > 30)
+             {
 
-                float basePrice = 43.99F; // missing calculation of 0.41
+                 float basePrice = 43.99F; // missing calculation of 0.41
+                 float rate = 0.41F;
+                 int rateMultiplier = 0; // if this is 0 it will calculate price for weights between >30 & <31 kg , where they  dont need to pay 0.41?
+                 float totalPrice = 0F;
+
+                 // some sort of for loop where any kilogram over 31 adds 0.41 to the sum of 43.99
+                 while (parcel.ParcelWeight <= 55) // any parcel >30 over 25 kg , 30+25 = 55 
+                 {
+                     totalPrice = basePrice + (rateMultiplier * rate);
+                     rateMultiplier++;
+                     parcel.ParcelWeight++;
+                     // DP said parcel can weigh above 55kg , that in theory means this courier can ship to infinity?
+                 }*/
+
+            else if(weight>30)
+            {
+                float extraWeight = (weight - 30F);
                 float rate = 0.41F;
-                int rateMultiplier = 0; // if this is 0 it will calculate price for weights between >30 & <31 kg , where they  dont need to pay 0.41?
-                float totalPrice = 0F;
+                float basePrice=43.99F;
 
-                // some sort of for loop where any kilogram over 31 adds 0.41 to the sum of 43.99
-                while (parcel.ParcelWeight <= 55) // any parcel >30 over 25 kg , 30+25 = 55 
-                {
-                    totalPrice = basePrice + (rateMultiplier * rate);
-                    rateMultiplier++;
-                    parcel.ParcelWeight++;
-                    // DP said parcel can weigh above 55kg , that in theory means this courier can ship to infinity?
-                }
+                float priceRate = basePrice + (rate * extraWeight);
+
+                return priceRate;
+
             }
-            
-            return parcelPricebyWeight; 
+
+            else {  throw new ArgumentException("{0{, price rate not implemented yet"); } // delete this once ^- is fixed
         }
+            
+           
+        
 
-        public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
+        public float calculateTotalPrice(Parcel parcel)
         {
-            calculatePriceByVolume(parcel, parcelPriceByVolume);
-            calculatePriceByWeight(parcel, parcelPricebyWeight);
+        float ParcelVolumePrice = calculatePriceByVolume(parcel.ParcelHeight * parcel.ParcelWidth * parcel.ParcelDepth);
+        float ParcelWeightPrice = calculatePriceByWeight(parcel.ParcelWeight);
 
-            if (parcelPriceByVolume > parcelPricebyWeight)
+            if (ParcelVolumePrice > ParcelWeightPrice)
             {
-                 testTotalPrice = parcelPriceByVolume;
+                 totalPrice = ParcelVolumePrice;
             }
 
             else
             {
-                 testTotalPrice = parcelPricebyWeight;
+                 totalPrice = ParcelWeightPrice;
             }
-            return testTotalPrice;
+            return totalPrice;
         }
     }
 }

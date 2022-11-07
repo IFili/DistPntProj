@@ -8,16 +8,11 @@ namespace Cargo4You_Project.Controllers
 {
     public class HomeController : Controller 
     {
+        public int ParcelPrice { get; private set; }
 
-
-
-
-        [HttpGet]
         public IActionResult Index()
         {
-            var parcel = new Parcel(); // test izbrisi posle
-
-            return View(parcel);
+            return View();
         }
 
         [HttpGet]
@@ -35,35 +30,29 @@ namespace Cargo4You_Project.Controllers
 
 
         [HttpPost]
-        public ActionResult SetParcelDetails(string ParcelName,float ParcelWidth, float ParcelHeight,float ParcelDepth, float ParcelWeight ) //calculate here
+        public ActionResult SetParcelDetails(string ParcelName,float ParcelWidth, float ParcelHeight,float ParcelDepth, float ParcelWeight) //calculate here
         {
 
-            Parcel pObj = new Parcel();
+            Parcel parcelObject = new Parcel();
            // pObj.ParcelId = ParcelId;
-            pObj.ParcelName = ParcelName; //fix , treba da gi prikazuva options
-            pObj.ParcelDepth = (int)ParcelDepth; //fix cast
-            pObj.ParcelWidth = (int)ParcelWidth;//fix cast
-            pObj.ParcelHeight = (int)ParcelHeight;//fix cast
-            pObj.ParcelWeight = (int)ParcelWeight;//fix cast
+            parcelObject.ParcelName = ParcelName; //fix , needs to show options
+            parcelObject.ParcelDepth = (int)ParcelDepth; //fix cast
+            parcelObject.ParcelWidth = (int)ParcelWidth;//fix cast
+            parcelObject.ParcelHeight = (int)ParcelHeight;//fix cast
+            parcelObject.ParcelWeight = (int)ParcelWeight;//fix cast
+            
+
+            Calculator calculator = new Calculator(parcelObject);
+            var a = calculator.CalculatePrice();
+
+            parcelObject.ParcelPrice = a;
 
 
-
-            return View(pObj);
+            return View(parcelObject);
         }
 
 
-        [HttpPost]
-        public ActionResult Zojgene(string ParcelName, float ParcelWidth, float ParcelHeight, float ParcelDepth, float ParcelWeight)
-        {
-            Parcel zojgene = new Parcel();
-            zojgene.ParcelName = ParcelName; //fix , treba da gi prikazuva options
-            zojgene.ParcelDepth = (int)ParcelDepth; //fix cast
-            zojgene.ParcelWidth = (int)ParcelWidth;//fix cast
-            zojgene.ParcelHeight = (int)ParcelHeight;//fix cast
-            zojgene.ParcelWeight = (int)ParcelWeight;//fix cast
-
-            return View(zojgene);
-        }
+        
        
     }
 }

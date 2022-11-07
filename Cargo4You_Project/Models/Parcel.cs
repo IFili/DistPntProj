@@ -8,7 +8,7 @@ namespace Cargo4You_Project.Models
     {
         public int ParcelId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please select a courier")]
         public string ParcelName { get; set; } // se misli koj supplier, fix it
 
         //public string ParcelCourier { get; set; } = default!; //nz so e ova fix it
@@ -25,6 +25,8 @@ namespace Cargo4You_Project.Models
 
         [Required]
         public float ParcelWeight { get; set; }
+
+        public float ParcelPrice { get; set; }
 
         
         public enum CourierType

@@ -5,95 +5,86 @@ using System.Threading.Tasks;
 
 namespace Cargo4You_Project.Repositories
 {
-    public   class Cargo4You: ICargo4You
+    public   class Cargo4You 
     {
-       
+        private float totalPrice; 
 
-        //maybe needs to be virtual
-        // input logic of methods here
-        //const int defaultVolumeValue = 1000;
 
-        /* public  float calculateParcelVolume(float parcelVolume , ParcelSpecs parcelSpecs )
-         {
-
-         }*/
-        //This is method for calculating price
-        //Params: Parcel - this is the class that getthe courier details
-        //Return type: float
-        public float calculatePriceBylVolume(Parcel parcel, float parcelPriceByVolume) //zapamti da vratis pricevolume  // shoult float parcelVolume be a ref? 
+        public float calculatePriceBylVolume(float volume) 
         {
            
-            float parcelVolume = parcel.ParcelHeight * parcel.ParcelWidth * parcel.ParcelDepth;
-
-            //return parcelVolume
-            
-            if( parcelVolume<=1000) { return parcelPriceByVolume = 10; }
-             else if(parcelVolume >1000 && parcelVolume<=1700) { return parcelPriceByVolume = 20; }
-            else { throw new ArgumentOutOfRangeException("{0}, Parcel volume exceeds maximum limits, please select another courier "); } 
-            
-
-
-            // this is the same for all 3 suppliers, need to figgure out how not to have it in 3 different classes
-        }
-
-       
-       
-
-        /*public float calculatePriceByVolume(float price, float parcelVolume) 
-        {
-            parcelVolume.calculateParcelVolume();
-           
-
-
-        }*/
-
-        public float calculatePriceByWeight(Parcel parcel, float parcelPricebyWeight)
-        {
-            //float parcelPrice;
-
-            if (parcel.ParcelWeight <= 2)
+            if(volume <= 1000)
             {
-                 parcelPricebyWeight = 15;
+                return 10;
             }
-
-
-            else if (parcel.ParcelWeight > 2 && parcel.ParcelWeight<=15) 
-            { 
-                 parcelPricebyWeight = 18; 
-            }
-           
-            
-              else if(parcel.ParcelWeight > 15 && parcel.ParcelWeight<=20)
+            else if(volume > 1000 && volume <=1700)
             {
-                 parcelPricebyWeight = 35; 
-            }
-
-            else { throw new ArgumentOutOfRangeException("{0}, Parcel weight exceeds maximum limits, please select another courier "); }
-
-            return parcelPricebyWeight;
-
-
-        }
-
-        public float calculateTotalPrice(Parcel parcel, float parcelPriceByVolume, float parcelPricebyWeight, float testTotalPrice)
-        {
-            calculatePriceBylVolume(parcel, parcelPriceByVolume); 
-            calculatePriceByWeight(parcel, parcelPricebyWeight);
-
-
-            if (parcelPriceByVolume > parcelPricebyWeight)
-            {
-                 testTotalPrice = parcelPriceByVolume;
+                return 20;
             }
 
             else
             {
-                 testTotalPrice = parcelPricebyWeight;
+                { throw new ArgumentOutOfRangeException("{0}, Parcel volume exceeds maximum limits, please select another courier "); }
             }
-            return testTotalPrice;
-             
-         }
 
-        
+        }
+
+
+
+
+
+
+        public float calculatePriceByWeight(float weight)
+        {
+
+
+            if (weight <= 2)
+            {
+                return 15;
+            }
+
+
+            else if (weight > 2 && weight <= 15)
+            {
+                return 18;
+            }
+
+
+            else if (weight > 15 && weight <= 20)
+            {
+                return 35;
+            }
+
+            else { throw new ArgumentOutOfRangeException("{0}, Parcel weight exceeds maximum limits, please select another courier "); }
+        }
+
+        public float calculateTotalPrice(Parcel parcel)
+        {
+
+            float ParcelVolumePrice = calculatePriceBylVolume(parcel.ParcelHeight * parcel.ParcelWidth * parcel.ParcelDepth);
+            float ParcelWeightPrice = calculatePriceByWeight(parcel.ParcelWeight);
+
+
+
+            if (ParcelVolumePrice > ParcelWeightPrice)
+            {
+                totalPrice = ParcelVolumePrice;
+            }
+
+            else
+            {
+                totalPrice = ParcelWeightPrice;
+            }
+
+            return totalPrice;
+
+        }
+
+
     }
+
+
+
+
 }
+
