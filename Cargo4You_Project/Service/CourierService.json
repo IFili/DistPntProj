@@ -1,0 +1,85 @@
+[
+
+
+  {
+
+    "CourierName": "Cargo4You",
+    "MinimumVolume": 1,
+    "Volume2": 1000,
+    "Volume3": 0,
+    "Volume4": 0,
+    "MaxVolume": 2000,
+
+    "VolumePrice1": 10,
+    "VolumePrice2": 0,
+    "VolumePrice3": 0,
+    "VolumePrice4": 20,
+
+    "MinimumWeight": 0,
+    "Weight2": 2,
+    "Weight3": 15,
+    "MaxWeight": 20,
+
+    "WeightPrice1": 15,
+    "WeightPrice2": 18,
+    "WeightPrice3": 35,
+    "ExcessWeightBase": 0,
+    "ExcessWeightRate": 0
+  },
+
+  {
+    "CourierName": "ShipFaster",
+    "MinimumVolume": 1,
+    "Volume2": 1000,
+    "Volume3": 0,
+    "Volume4": 0,
+    "MaxVolume": 1700,
+
+    "VolumePrice1": 11.99,
+    "VolumePrice2": 0,
+    "VolumePrice3": 0,
+    "VolumePrice4": 21.99,
+
+    "MinimumWeight": 10,
+    "Weight2": 15,
+    "Weight3": 25,
+    "MaxWeight": 30,
+
+    "WeightPrice1": 16.50,
+    "WeightPrice2": 36.50,
+    "WeightPrice3": 0,
+    "ExcessWeightBase": 40,
+    "ExcessWeightRate": 0.417
+
+  },
+  {
+    "CourierName": "MaltaShip",
+    "MinimumVolume": 500,
+    "Volume2": 1000,
+    "Volume3": 2000,
+    "Volume4": 5000,
+    "MaxVolume": 5001, 
+
+    "VolumePrice1": 9.50,
+    "VolumePrice2": 19.50,
+    "VolumePrice3": 48.50,
+    "VolumePrice4": 147.50,
+
+    "MinimumWeight": 10,
+    "Weight2": 20,
+    "Weight3": 30, 
+    "MaxWeight": 55, 
+
+    "WeightPrice1": 16.50,
+    "WeightPrice2": 36.50,
+    "WeightPrice3": 0,
+    "ExcessWeightBase": 43.99,
+    "ExcessWeightRate": 0.41
+
+
+
+  }
+
+
+]
+

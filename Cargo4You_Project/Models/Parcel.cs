@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Cargo4You_Project.Repositories;
+using Cargo4You_Project.Service;
+
 
 namespace Cargo4You_Project.Models
 {
@@ -24,26 +25,23 @@ namespace Cargo4You_Project.Models
         public int ParcelDepth { get; set; }
 
         [Required]
-        public float ParcelWeight { get; set; }
+        public int ParcelWeight { get; set; }
 
         public float ParcelPrice { get; set; }
 
-        
-        public enum CourierType
-        {
-            [Display(Name = "Cargo4You")]
-            Cargo4You = 1,
+        public int ParcelVolume { get; set; } //in this version i had to store the volume
 
-            [Display(Name = "ShipFaster")]
-            ShipFaster = 2,
+        public float ParcelPriceByVolume { get; set; } //in this version i had to store the price by volume
+        public float ParcelPriceByWeight { get; set; } //in this version i had to store the price by volume
 
-            [Display(Name = "MaltaShip")]
-            MaltaShip=3
 
-        }
 
-       
-}
+
+
+
+
+
+    }
    
 
 
